@@ -1,0 +1,5513 @@
+openapi: 3.0.0
+info:
+  title: Verbwire API documentation
+  version: 1.0.0
+servers:
+- url: https://api.verbwire.com/v1
+tags:
+- name: Data
+  description: NFT Data Endpoint
+- name: Store
+  description: IPFS Storage Endpoint
+paths:
+  /nft/data/owned:
+    get:
+      tags:
+      - Data
+      summary: Get all NFTs owned by a wallet address
+      description: Returns a list of all NFTs held within a particular wallet address
+      operationId: nftDataOwnedGET
+      parameters:
+      - name: walletAddress
+        in: query
+        description: Wallet address to query
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: chain
+        in: query
+        description: Blockchain to search
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: ethereum
+          enum:
+          - ethereum
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 401
+                message: Please authenticate
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 403
+                message: Forbidden
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 404
+                message: Not found
+      security:
+      - APIKey: []
+      x-swagger-router-controller: Data
+  /nft/data/created:
+    get:
+      tags:
+      - Data
+      summary: Get all NFTs created by a wallet address
+      description: Returns a list of all NFTs created by a particular wallet address
+      operationId: nftDataCreatedGET
+      parameters:
+      - name: walletAddress
+        in: query
+        description: Wallet address to query
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: chain
+        in: query
+        description: Blockchain to search
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: ethereum
+          enum:
+          - ethereum
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 401
+                message: Please authenticate
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 403
+                message: Forbidden
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 404
+                message: Not found
+      security:
+      - APIKey: []
+      x-swagger-router-controller: Data
+  /nft/data/transactions:
+    get:
+      tags:
+      - Data
+      summary: Get all transactions by a wallet address
+      description: Returns a list of all transactions by a particular wallet address
+      operationId: nftDataTransactionsGET
+      parameters:
+      - name: walletAddress
+        in: query
+        description: Wallet address to query
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: chain
+        in: query
+        description: Blockchain to search
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: ethereum
+          enum:
+          - ethereum
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_1'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 401
+                message: Please authenticate
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 403
+                message: Forbidden
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 404
+                message: Not found
+      security:
+      - APIKey: []
+      x-swagger-router-controller: Data
+  /nft/data/transactionsByContract:
+    get:
+      tags:
+      - Data
+      summary: Get all NFTs Contract transactions by a wallet address
+      description: Produce a list of all NFTs transactions for a specific NFT contract
+        within a particular wallet address
+      operationId: nftDataTransactionsByContractGET
+      parameters:
+      - name: contractAddress
+        in: query
+        description: NFT contract address
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: walletAddress
+        in: query
+        description: Wallet address to query
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: chain
+        in: query
+        description: Blockchain to search
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: ethereum
+          enum:
+          - ethereum
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_2'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 401
+                message: Please authenticate
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 403
+                message: Forbidden
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 404
+                message: Not found
+      security:
+      - APIKey: []
+      x-swagger-router-controller: Data
+  /nft/data/nftDetails:
+    get:
+      tags:
+      - Data
+      summary: Get details for an NFT
+      description: Returns all details for an NFT
+      operationId: nftDataNftDetailsGET
+      parameters:
+      - name: contractAddress
+        in: query
+        description: NFT contract address
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: tokenId
+        in: query
+        description: NFT Token ID
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: chain
+        in: query
+        description: Blockchain to search
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: ethereum
+          enum:
+          - ethereum
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_3'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 401
+                message: Please authenticate
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 403
+                message: Forbidden
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 404
+                message: Not found
+      security:
+      - APIKey: []
+      x-swagger-router-controller: Data
+  /nft/data/lastFloorPriceForSlug:
+    get:
+      tags:
+      - Data
+      summary: Get last floor price for slug
+      description: Returns the most recent floor price for an NFT project slug
+      operationId: nftDataLastFloorPriceForSlugGET
+      parameters:
+      - name: slug
+        in: query
+        description: NFT project slug
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: chain
+        in: query
+        description: Blockchain to search
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          enum:
+          - ethereum
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_4'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 401
+                message: Please authenticate
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 403
+                message: Forbidden
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 404
+                message: Not found
+      security:
+      - APIKey: []
+      x-swagger-router-controller: Data
+  /nft/data/lastFloorPriceForContractAddress:
+    get:
+      tags:
+      - Data
+      summary: Get last floor price for contract address
+      description: Returns the most recent floor price for an NFT
+      operationId: nftDataLastFloorPriceForContractAddressGET
+      parameters:
+      - name: contractAddress
+        in: query
+        description: NFT contract address
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: chain
+        in: query
+        description: Blockchain to search
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          enum:
+          - ethereum
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_4'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 401
+                message: Please authenticate
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 403
+                message: Forbidden
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 404
+                message: Not found
+      security:
+      - APIKey: []
+      x-swagger-router-controller: Data
+  /nft/data/floorPricesForSlug:
+    get:
+      tags:
+      - Data
+      summary: Get floor prices for slug
+      description: Returns all floor price history for an NFT project slug
+      operationId: nftDataFloorPricesForSlugGET
+      parameters:
+      - name: slug
+        in: query
+        description: NFT project slug
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: chain
+        in: query
+        description: Blockchain to search
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          enum:
+          - ethereum
+      - name: limit
+        in: query
+        description: Number of results to return
+        required: false
+        style: form
+        explode: true
+        schema:
+          maximum: 1000
+          minimum: 0
+          type: number
+          default: 25
+      - name: offset
+        in: query
+        description: Used to return the next set of items
+        required: false
+        style: form
+        explode: true
+        schema:
+          minimum: 0
+          type: number
+          default: 0
+      - name: sortDirection
+        in: query
+        description: Timestamp sort direction for the return results
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: DESC
+          enum:
+          - DESC
+          - ASC
+      - name: startDate
+        in: query
+        description: Starting timestamp for results
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: endDate
+        in: query
+        description: Ending timestamp for results
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_5'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 401
+                message: Please authenticate
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 403
+                message: Forbidden
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 404
+                message: Not found
+      security:
+      - APIKey: []
+      x-swagger-router-controller: Data
+  /nft/data/floorPricesForContractAddress:
+    get:
+      tags:
+      - Data
+      summary: Get floor prices for contract address
+      description: Returns all floor price history for an NFT project
+      operationId: nftDataFloorPricesForContractAddressGET
+      parameters:
+      - name: contractAddress
+        in: query
+        description: NFT contract address
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: chain
+        in: query
+        description: Blockchain to search
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          enum:
+          - ethereum
+      - name: limit
+        in: query
+        description: Number of results to return
+        required: false
+        style: form
+        explode: true
+        schema:
+          maximum: 1000
+          minimum: 0
+          type: number
+          default: 25
+      - name: offset
+        in: query
+        description: Used to return the next set of items
+        required: false
+        style: form
+        explode: true
+        schema:
+          minimum: 0
+          type: number
+          default: 0
+      - name: sortDirection
+        in: query
+        description: Timestamp sort direction for the return results
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: DESC
+          enum:
+          - DESC
+          - ASC
+      - name: startDate
+        in: query
+        description: Starting timestamp for results
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: endDate
+        in: query
+        description: Ending timestamp for results
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_5'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 401
+                message: Please authenticate
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 403
+                message: Forbidden
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 404
+                message: Not found
+      security:
+      - APIKey: []
+      x-swagger-router-controller: Data
+  /nft/data/historicalStatsForSlug:
+    get:
+      tags:
+      - Data
+      summary: Get historical stats for slug
+      description: Returns historical statistics for an NFT project slug
+      operationId: nftDataHistoricalStatsForSlugGET
+      parameters:
+      - name: slug
+        in: query
+        description: NFT project slug
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: chain
+        in: query
+        description: Blockchain to search
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          enum:
+          - ethereum
+      - name: limit
+        in: query
+        description: Number of results to return
+        required: false
+        style: form
+        explode: true
+        schema:
+          maximum: 1000
+          minimum: 0
+          type: number
+          default: 25
+      - name: offset
+        in: query
+        description: Used to return the next set of items
+        required: false
+        style: form
+        explode: true
+        schema:
+          minimum: 0
+          type: number
+          default: 0
+      - name: sortDirection
+        in: query
+        description: Timestamp sort direction for the return results
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: DESC
+          enum:
+          - DESC
+          - ASC
+      - name: startDate
+        in: query
+        description: Starting timestamp for results
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: endDate
+        in: query
+        description: Ending timestamp for results
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_6'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 401
+                message: Please authenticate
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 403
+                message: Forbidden
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 404
+                message: Not found
+      security:
+      - APIKey: []
+      x-swagger-router-controller: Data
+  /nft/data/historicalStatsForContractAddress:
+    get:
+      tags:
+      - Data
+      summary: Get historical stats for contract address
+      description: Returns historical statistics for an NFT project
+      operationId: nftDataHistoricalStatsForContractAddressGET
+      parameters:
+      - name: contractAddress
+        in: query
+        description: NFT contract address
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: chain
+        in: query
+        description: Blockchain to search
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          enum:
+          - ethereum
+      - name: limit
+        in: query
+        description: Number of results to return
+        required: false
+        style: form
+        explode: true
+        schema:
+          maximum: 1000
+          minimum: 0
+          type: number
+          default: 25
+      - name: offset
+        in: query
+        description: Used to return the next set of items
+        required: false
+        style: form
+        explode: true
+        schema:
+          minimum: 0
+          type: number
+          default: 0
+      - name: sortDirection
+        in: query
+        description: Timestamp sort direction for the return results
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: DESC
+          enum:
+          - DESC
+          - ASC
+      - name: startDate
+        in: query
+        description: Starting timestamp for results
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: endDate
+        in: query
+        description: Ending timestamp for results
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_6'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 401
+                message: Please authenticate
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 403
+                message: Forbidden
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 404
+                message: Not found
+      security:
+      - APIKey: []
+      x-swagger-router-controller: Data
+  /nft/data/salesEventsForSlug:
+    get:
+      tags:
+      - Data
+      summary: Get sales events for slug
+      description: Returns all sales events for a particular NFT project slug
+      operationId: nftDataSalesEventsForSlugGET
+      parameters:
+      - name: slug
+        in: query
+        description: NFT project slug
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: chain
+        in: query
+        description: Blockchain to search
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          enum:
+          - ethereum
+      - name: limit
+        in: query
+        description: Number of results to return
+        required: false
+        style: form
+        explode: true
+        schema:
+          maximum: 1000
+          minimum: 0
+          type: number
+          default: 25
+      - name: offset
+        in: query
+        description: Used to return the next set of items
+        required: false
+        style: form
+        explode: true
+        schema:
+          minimum: 0
+          type: number
+          default: 0
+      - name: sortDirection
+        in: query
+        description: Timestamp sort direction for the return results
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: DESC
+          enum:
+          - DESC
+          - ASC
+      - name: startDate
+        in: query
+        description: Starting timestamp for results
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: endDate
+        in: query
+        description: Ending timestamp for results
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_7'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 401
+                message: Please authenticate
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 403
+                message: Forbidden
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 404
+                message: Not found
+      security:
+      - APIKey: []
+      x-swagger-router-controller: Data
+  /nft/data/salesEventsForContractAddress:
+    get:
+      tags:
+      - Data
+      summary: Get sales events for contract address
+      description: Returns all sales events for a particular NFT project slug
+      operationId: nftDataSalesEventsForContractAddressGET
+      parameters:
+      - name: contractAddress
+        in: query
+        description: NFT contract address
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: chain
+        in: query
+        description: Blockchain to search
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          enum:
+          - ethereum
+      - name: limit
+        in: query
+        description: Number of results to return
+        required: false
+        style: form
+        explode: true
+        schema:
+          maximum: 1000
+          minimum: 0
+          type: number
+          default: 25
+      - name: offset
+        in: query
+        description: Used to return the next set of items
+        required: false
+        style: form
+        explode: true
+        schema:
+          minimum: 0
+          type: number
+          default: 0
+      - name: sortDirection
+        in: query
+        description: Timestamp sort direction for the return results
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: DESC
+          enum:
+          - DESC
+          - ASC
+      - name: startDate
+        in: query
+        description: Starting timestamp for results
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: endDate
+        in: query
+        description: Ending timestamp for results
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_7'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 401
+                message: Please authenticate
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 403
+                message: Forbidden
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 404
+                message: Not found
+      security:
+      - APIKey: []
+      x-swagger-router-controller: Data
+  /nft/data/transferEventsForSlug:
+    get:
+      tags:
+      - Data
+      summary: Get transfer events for slug
+      description: Returns all transfer events for a particular NFT project slug
+      operationId: nftDataTransferEventsForSlugGET
+      parameters:
+      - name: slug
+        in: query
+        description: NFT project slug
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: chain
+        in: query
+        description: Blockchain to search
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          enum:
+          - ethereum
+      - name: limit
+        in: query
+        description: Number of results to return
+        required: false
+        style: form
+        explode: true
+        schema:
+          maximum: 1000
+          minimum: 0
+          type: number
+          default: 25
+      - name: page
+        in: query
+        description: Used to return the next set of items
+        required: false
+        style: form
+        explode: true
+        schema:
+          minimum: 1
+          type: number
+          default: 1
+      - name: sortDirection
+        in: query
+        description: Timestamp sort direction for the return results
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: DESC
+          enum:
+          - DESC
+          - ASC
+      - name: startDate
+        in: query
+        description: Starting timestamp for results
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: endDate
+        in: query
+        description: Ending timestamp for results
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_8'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 401
+                message: Please authenticate
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 403
+                message: Forbidden
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 404
+                message: Not found
+      security:
+      - APIKey: []
+      x-swagger-router-controller: Data
+  /nft/data/transferEventsForContractAddress:
+    get:
+      tags:
+      - Data
+      summary: Get transfer events for contract address
+      description: Returns all transfer events for a particular NFT project slug
+      operationId: nftDataTransferEventsForContractAddressGET
+      parameters:
+      - name: contractAddress
+        in: query
+        description: NFT contract address
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: chain
+        in: query
+        description: Blockchain to search
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          enum:
+          - ethereum
+      - name: limit
+        in: query
+        description: Number of results to return
+        required: false
+        style: form
+        explode: true
+        schema:
+          maximum: 1000
+          minimum: 0
+          type: number
+          default: 25
+      - name: page
+        in: query
+        description: Used to return the next set of items
+        required: false
+        style: form
+        explode: true
+        schema:
+          minimum: 1
+          type: number
+          default: 1
+      - name: sortDirection
+        in: query
+        description: Timestamp sort direction for the return results
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: DESC
+          enum:
+          - DESC
+          - ASC
+      - name: startDate
+        in: query
+        description: Starting timestamp for results
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: endDate
+        in: query
+        description: Ending timestamp for results
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_9'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 401
+                message: Please authenticate
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 403
+                message: Forbidden
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 404
+                message: Not found
+      security:
+      - APIKey: []
+      x-swagger-router-controller: Data
+  /nft/data/ownershipForSlug:
+    get:
+      tags:
+      - Data
+      summary: Get ownership data for slug
+      description: Returns all wallets that own a particular NFT project slug
+      operationId: nftDataOwnershipForSlugGET
+      parameters:
+      - name: slug
+        in: query
+        description: NFT project slug
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: chain
+        in: query
+        description: Blockchain to search
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          enum:
+          - ethereum
+      - name: limit
+        in: query
+        description: Number of results to return
+        required: false
+        style: form
+        explode: true
+        schema:
+          maximum: 1000
+          minimum: 0
+          type: number
+          default: 25
+      - name: page
+        in: query
+        description: Used to return the next set of items
+        required: false
+        style: form
+        explode: true
+        schema:
+          minimum: 1
+          type: number
+          default: 1
+      - name: sortDirection
+        in: query
+        description: Timestamp sort direction for the return results
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: DESC
+          enum:
+          - DESC
+          - ASC
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_10'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 401
+                message: Please authenticate
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 403
+                message: Forbidden
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 404
+                message: Not found
+      security:
+      - APIKey: []
+      x-swagger-router-controller: Data
+  /nft/data/ownershipForContractAddress:
+    get:
+      tags:
+      - Data
+      summary: Get ownership data for contract address
+      description: Returns all wallets that owna particular NFT project slug
+      operationId: nftDataOwnershipForContractAddressGET
+      parameters:
+      - name: contractAddress
+        in: query
+        description: NFT contract address
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: chain
+        in: query
+        description: Blockchain to search
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          enum:
+          - ethereum
+      - name: limit
+        in: query
+        description: Number of results to return
+        required: false
+        style: form
+        explode: true
+        schema:
+          maximum: 1000
+          minimum: 0
+          type: number
+          default: 25
+      - name: page
+        in: query
+        description: Used to return the next set of items
+        required: false
+        style: form
+        explode: true
+        schema:
+          minimum: 1
+          type: number
+          default: 1
+      - name: sortDirection
+        in: query
+        description: Timestamp sort direction for the return results
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: DESC
+          enum:
+          - DESC
+          - ASC
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_10'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 401
+                message: Please authenticate
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 403
+                message: Forbidden
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 404
+                message: Not found
+      security:
+      - APIKey: []
+      x-swagger-router-controller: Data
+  /nft/data/collections/all:
+    get:
+      tags:
+      - Data
+      summary: Get all indexed collections
+      description: Returns all collections indexed by Verbwire
+      operationId: nftDataCollectionsAllGET
+      parameters:
+      - name: chain
+        in: query
+        description: Blockchain to search
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          enum:
+          - ethereum
+      - name: limit
+        in: query
+        description: Number of results to return
+        required: false
+        style: form
+        explode: true
+        schema:
+          maximum: 1000
+          minimum: 0
+          type: number
+          default: 25
+      - name: page
+        in: query
+        description: Used to return the next set of items
+        required: false
+        style: form
+        explode: true
+        schema:
+          minimum: 1
+          type: number
+          default: 1
+      - name: sortField
+        in: query
+        description: Field to sort by
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: rank
+          enum:
+          - rank
+          - volume
+      - name: sortInterval
+        in: query
+        description: Interval to sort by
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: allTime
+          enum:
+          - 1day
+          - 7day
+          - 30day
+          - allTime
+      - name: sortDirection
+        in: query
+        description: Timestamp sort direction for the return results
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: ASC
+          enum:
+          - DESC
+          - ASC
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_11'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 401
+                message: Please authenticate
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 403
+                message: Forbidden
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 404
+                message: Not found
+      security:
+      - APIKey: []
+      x-swagger-router-controller: Data
+  /nft/data/collections/search:
+    get:
+      tags:
+      - Data
+      summary: Search all indexed collections
+      description: Searches all collections indexed by Verbwire for a given string
+      operationId: nftDataCollectionsSearchGET
+      parameters:
+      - name: searchString
+        in: query
+        description: Search value
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: chain
+        in: query
+        description: Blockchain to search
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          enum:
+          - ethereum
+      - name: limit
+        in: query
+        description: Number of results to return
+        required: false
+        style: form
+        explode: true
+        schema:
+          maximum: 1000
+          minimum: 0
+          type: number
+          default: 25
+      - name: page
+        in: query
+        description: Used to return the next set of items
+        required: false
+        style: form
+        explode: true
+        schema:
+          minimum: 1
+          type: number
+          default: 1
+      - name: sortField
+        in: query
+        description: Field to sort by
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: rank
+          enum:
+          - rank
+          - volume
+      - name: sortInterval
+        in: query
+        description: Interval to sort by
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: allTime
+          enum:
+          - 1day
+          - 7day
+          - 30day
+          - allTime
+      - name: sortDirection
+        in: query
+        description: Timestamp sort direction for the return results
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: ASC
+          enum:
+          - DESC
+          - ASC
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_11'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 401
+                message: Please authenticate
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 403
+                message: Forbidden
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 404
+                message: Not found
+      security:
+      - APIKey: []
+      x-swagger-router-controller: Data
+  /nft/data/attributesForSlug:
+    get:
+      tags:
+      - Data
+      summary: Get attributes for slug
+      description: Returns all metadata attributes for a particular NFT project slug
+      operationId: nftDataAttributesForSlugGET
+      parameters:
+      - name: slug
+        in: query
+        description: NFT project slug
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: chain
+        in: query
+        description: Blockchain to search
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          enum:
+          - ethereum
+      - name: limit
+        in: query
+        description: Number of results to return
+        required: false
+        style: form
+        explode: true
+        schema:
+          maximum: 1000
+          minimum: 0
+          type: number
+          default: 25
+      - name: page
+        in: query
+        description: Used to return the next set of items
+        required: false
+        style: form
+        explode: true
+        schema:
+          minimum: 1
+          type: number
+          default: 1
+      - name: sortField
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: key
+          enum:
+          - key
+          - value
+          - count
+      - name: sortDirection
+        in: query
+        description: Timestamp sort direction for the return results
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: DESC
+          enum:
+          - DESC
+          - ASC
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_12'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 401
+                message: Please authenticate
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 403
+                message: Forbidden
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 404
+                message: Not found
+      security:
+      - APIKey: []
+      x-swagger-router-controller: Data
+  /nft/data/attributesForContractAddress:
+    get:
+      tags:
+      - Data
+      summary: Get attributes for contract address
+      description: Returns all metadata attributes for an NFT contract address
+      operationId: nftDataAttributesForContractAddressGET
+      parameters:
+      - name: contractAddress
+        in: query
+        description: NFT contract address
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: chain
+        in: query
+        description: Blockchain to search
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          enum:
+          - ethereum
+      - name: limit
+        in: query
+        description: Number of results to return
+        required: false
+        style: form
+        explode: true
+        schema:
+          maximum: 1000
+          minimum: 0
+          type: number
+          default: 25
+      - name: page
+        in: query
+        description: Used to return the next set of items
+        required: false
+        style: form
+        explode: true
+        schema:
+          minimum: 1
+          type: number
+          default: 1
+      - name: sortField
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: key
+          enum:
+          - key
+          - value
+          - count
+      - name: sortDirection
+        in: query
+        description: Timestamp sort direction for the return results
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: DESC
+          enum:
+          - DESC
+          - ASC
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_12'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 401
+                message: Please authenticate
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 403
+                message: Forbidden
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 404
+                message: Not found
+      security:
+      - APIKey: []
+      x-swagger-router-controller: Data
+  /nft/data/attributesWithTokensForSlug:
+    get:
+      tags:
+      - Data
+      summary: Get attributes (with tokens) for slug
+      description: Returns all metadata attributes and corresponding token IDs for
+        a particular NFT project slug
+      operationId: nftDataAttributesWithTokensForSlugGET
+      parameters:
+      - name: slug
+        in: query
+        description: NFT project slug
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: chain
+        in: query
+        description: Blockchain to search
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          enum:
+          - ethereum
+      - name: limit
+        in: query
+        description: Number of results to return
+        required: false
+        style: form
+        explode: true
+        schema:
+          maximum: 1000
+          minimum: 0
+          type: number
+          default: 25
+      - name: page
+        in: query
+        description: Used to return the next set of items
+        required: false
+        style: form
+        explode: true
+        schema:
+          minimum: 1
+          type: number
+          default: 1
+      - name: sortField
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: key
+          enum:
+          - key
+          - value
+          - count
+      - name: sortDirection
+        in: query
+        description: Timestamp sort direction for the return results
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: DESC
+          enum:
+          - DESC
+          - ASC
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_13'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 401
+                message: Please authenticate
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 403
+                message: Forbidden
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 404
+                message: Not found
+      security:
+      - APIKey: []
+      x-swagger-router-controller: Data
+  /nft/data/attributesWithTokensForContractAddress:
+    get:
+      tags:
+      - Data
+      summary: Get attributes (with tokens) for contract address
+      description: Returns all metadata attributes and corresponding token IDs for
+        an NFT contract address
+      operationId: nftDataAttributesWithTokensForContractAddressGET
+      parameters:
+      - name: contractAddress
+        in: query
+        description: NFT contract address
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: chain
+        in: query
+        description: Blockchain to search
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          enum:
+          - ethereum
+      - name: limit
+        in: query
+        description: Number of results to return
+        required: false
+        style: form
+        explode: true
+        schema:
+          maximum: 1000
+          minimum: 0
+          type: number
+          default: 25
+      - name: page
+        in: query
+        description: Used to return the next set of items
+        required: false
+        style: form
+        explode: true
+        schema:
+          minimum: 1
+          type: number
+          default: 1
+      - name: sortField
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: key
+          enum:
+          - key
+          - value
+          - count
+      - name: sortDirection
+        in: query
+        description: Timestamp sort direction for the return results
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: DESC
+          enum:
+          - DESC
+          - ASC
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_13'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 401
+                message: Please authenticate
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 403
+                message: Forbidden
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 404
+                message: Not found
+      security:
+      - APIKey: []
+      x-swagger-router-controller: Data
+  /nft/data/searchAttributesInSlug:
+    get:
+      tags:
+      - Data
+      summary: Search attributes in slug
+      description: Returns all metadata attributes for a particular NFT project slug
+      operationId: nftDataSearchAttributesInSlugGET
+      parameters:
+      - name: searchString
+        in: query
+        description: Expression to search in NFT attributes
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: slug
+        in: query
+        description: NFT project slug
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: chain
+        in: query
+        description: Blockchain to search
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          enum:
+          - ethereum
+      - name: limit
+        in: query
+        description: Number of results to return
+        required: false
+        style: form
+        explode: true
+        schema:
+          maximum: 1000
+          minimum: 0
+          type: number
+          default: 25
+      - name: page
+        in: query
+        description: Used to return the next set of items
+        required: false
+        style: form
+        explode: true
+        schema:
+          minimum: 1
+          type: number
+          default: 1
+      - name: sortField
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: key
+          enum:
+          - key
+          - value
+          - count
+      - name: sortDirection
+        in: query
+        description: Timestamp sort direction for the return results
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: DESC
+          enum:
+          - DESC
+          - ASC
+      - name: includeTokens
+        in: query
+        description: Include the corresponding token IDs in search results
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: boolean
+          default: false
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_12'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 401
+                message: Please authenticate
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 403
+                message: Forbidden
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 404
+                message: Not found
+      security:
+      - APIKey: []
+      x-swagger-router-controller: Data
+  /nft/data/searchAttributesInContractAddress:
+    get:
+      tags:
+      - Data
+      summary: Search attributes in contract address
+      description: Returns all metadata attributes for an NFT contract address
+      operationId: nftDataSearchAttributesInContractAddressGET
+      parameters:
+      - name: searchString
+        in: query
+        description: Expression to search in NFT attributes
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: contractAddress
+        in: query
+        description: NFT contract address
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: chain
+        in: query
+        description: Blockchain to search
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          enum:
+          - ethereum
+      - name: limit
+        in: query
+        description: Number of results to return
+        required: false
+        style: form
+        explode: true
+        schema:
+          maximum: 1000
+          minimum: 0
+          type: number
+          default: 25
+      - name: page
+        in: query
+        description: Used to return the next set of items
+        required: false
+        style: form
+        explode: true
+        schema:
+          minimum: 1
+          type: number
+          default: 1
+      - name: sortField
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: key
+          enum:
+          - key
+          - value
+          - count
+      - name: sortDirection
+        in: query
+        description: Timestamp sort direction for the return results
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: DESC
+          enum:
+          - DESC
+          - ASC
+      - name: includeTokens
+        in: query
+        description: Include the corresponding token IDs in search results
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: boolean
+          default: false
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_12'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 401
+                message: Please authenticate
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 403
+                message: Forbidden
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 404
+                message: Not found
+      security:
+      - APIKey: []
+      x-swagger-router-controller: Data
+  /nft/deploy/deployCollectionContract:
+    post:
+      tags:
+      - Deploy
+      summary: Deploy a Collection Contract
+      description: Deploy a collection contract in seconds. You can deploy any of
+        the provided three types of contracts (i) A standard ERC721 collection contract
+        (ii) An ERC721A collection contract (iii) An Omnichain ERC721 contract. Note,
+        an Omni chain contract gives you the the ability to send your NFTs across
+        different blockchains
+      operationId: nftDeployDeployCollectionContractPOST
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/body'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_14'
+        "400":
+          description: Failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+      security:
+      - APIKey: []
+      x-swagger-router-controller: Deploy
+  /nft/deploy/deployCustomContract:
+    post:
+      tags:
+      - Deploy
+      summary: Deploy a Custom Contract
+      description: Deploy a custom omnichain contract in seconds. A custom contract
+        is different from a collection contract. Use a custom contract for providing
+        NFT functionality in your applications.
+      operationId: nftDeployDeployCustomContractPOST
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/body_1'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_14'
+        "400":
+          description: Failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+      security:
+      - APIKey: []
+      x-swagger-router-controller: Deploy
+  /nft/deploy/burn:
+    post:
+      tags:
+      - Burn
+      summary: Burn NFT
+      description: Burn an NFT. You can burn only NFTs created from your own collection
+        contract.
+      operationId: nftDeployBurnPOST
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/body_2'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_14'
+        "400":
+          description: Failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+      security:
+      - APIKey: []
+      x-swagger-router-controller: Burn
+  /nft/update/initCollectionContract:
+    post:
+      tags:
+      - Deploy
+      summary: Initialize your collection contract
+      description: Set the parameters of your deployed collection contract
+      operationId: nftUpdateInitCollectionContractPOST
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/body_3'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_14'
+        "400":
+          description: Failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+      security:
+      - APIKey: []
+      x-swagger-router-controller: Deploy
+  /nft/deploy/updateContract:
+    post:
+      tags:
+      - Update
+      summary: Update Collection Contract
+      description: Update parameters of your collection contract
+      operationId: nftDeployUpdateContractPOST
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/body_4'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_14'
+        "400":
+          description: Failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+      security:
+      - APIKey: []
+      x-swagger-router-controller: Update
+  /nft/deploy/update/withdrawFunds:
+    post:
+      tags:
+      - Update
+      summary: Withdraw Funds
+      description: Withdraw funds from your smart contract.
+      operationId: nftDeployUpdateWithdrawFundsPOST
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/body_5'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_14'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 401
+                message: Please authenticate
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 403
+                message: Forbidden
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 404
+                message: Not found
+      security:
+      - APIKey: []
+      x-swagger-router-controller: Update
+  /nft/mint/quickMintFromFile:
+    post:
+      tags:
+      - Mint
+      summary: Quick mint Omnichain NFT from image
+      description: Mint an Omnichain NFT directly from your specified image file in
+        seconds
+      operationId: nftMintQuickMintFromFilePOST
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/body_6'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_14'
+        "400":
+          description: Failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+      security:
+      - APIKey: []
+      x-swagger-router-controller: Mint
+  /nft/mint/quickMintFromMetadataUrl:
+    post:
+      tags:
+      - Mint
+      summary: Quick mint from Metadata URL
+      description: Mint an Omnichain NFT directly from a provided metadata file URL
+      operationId: nftMintQuickMintFromMetadataUrlPOST
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/body_7'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_14'
+        "400":
+          description: Failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+      security:
+      - APIKey: []
+      x-swagger-router-controller: Mint
+  /nft/mint/collectionReserveMint:
+    post:
+      tags:
+      - Mint
+      summary: Mint to a Wallet Address
+      description: Mint an NFT to a provided address. Works with only collection contracts.
+      operationId: nftMintCollectionReserveMintPOST
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/body_8'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_14'
+        "400":
+          description: Failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+      security:
+      - APIKey: []
+      x-swagger-router-controller: Mint
+  /nft/mint/customContractMintFromMetadataUrl:
+    post:
+      tags:
+      - Mint
+      summary: Mint Custom contract NFT
+      description: Mint an NFT from a provided metadata json file URL using your created
+        custom contract
+      operationId: nftMintCustomContractMintFromMetadataUrlPOST
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/body_9'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_14'
+        "400":
+          description: Failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+      security:
+      - APIKey: []
+      x-swagger-router-controller: Mint
+  /nft/mint/customContractMintFromFile:
+    post:
+      tags:
+      - Mint
+      summary: Custom Contract NFT Mint from image
+      description: Mint an NFT from an image file using your created custom contract
+      operationId: nftMintCustomContractMintFromFilePOST
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/body_10'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_14'
+        "400":
+          description: Failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+      security:
+      - APIKey: []
+      x-swagger-router-controller: Mint
+  /nft/store/file:
+    post:
+      tags:
+      - Store
+      summary: Upload a local file to IPFS
+      description: Uploads a local file directly to IPFS. A quick and seamless way
+        to store a file in IPFS. This does not create a metadata json file that can
+        be used as an NFT metadata.
+      operationId: nftStoreFilePOST
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/body_11'
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_201'
+        "400":
+          description: Failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+      security:
+      - APIKey: []
+      x-swagger-router-controller: Store
+  /nft/store/fileFromUrl:
+    post:
+      tags:
+      - Store
+      summary: Upload a file via URL to IPFS
+      description: Uploads a file to IPFS from a provided url. A quick and seamless
+        way to store a file in IPFS. This does not create a metadata json file that
+        can be used as an NFT metadata.
+      operationId: nftStoreFileFromUrlPOST
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/body_12'
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_201_1'
+        "400":
+          description: Failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400_1'
+      security:
+      - APIKey: []
+      x-swagger-router-controller: Store
+  /nft/store/metadataFromImageUrl:
+    post:
+      tags:
+      - Store
+      summary: Upload a URL to IPFS as NFT metadata
+      description: Creates a metadata json file from the provided URL and uploads
+        the metadata file direcly to IPFS, all in one operation.
+      operationId: nftStoreMetadataFromImageUrlPOST
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/body_13'
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_201_2'
+        "400":
+          description: Failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+      security:
+      - APIKey: []
+      x-swagger-router-controller: Store
+  /nft/store/metadataFromImage:
+    post:
+      tags:
+      - Store
+      summary: Upload local file as metadata to IPFS
+      description: Creates a metadata json file from the provided local file, and
+        uploads the metadata file directly to IPFS, all in one operation.
+      operationId: nftStoreMetadataFromImagePOST
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/body_14'
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_201_3'
+        "400":
+          description: Failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+      security:
+      - APIKey: []
+      x-swagger-router-controller: Store
+  /nft/store/uploadDirectory:
+    post:
+      tags:
+      - Store
+      summary: Upload a directory to IPFS
+      description: Uploads a directory of metadata json files to IPFS. Useful for
+        creating nft collections. The files in your directory should be numbered,
+        example &#58; 1.json, 2.json, 3.json. You will need to upload all the files
+        together at once. The uploaded files to IPFS will all be in the same IPFS
+        directory. Once uploaded to IPFS the file extensions (.json) will be removed.
+        Example &#58; file "1.json" will show up as "1" in the IPFS directory
+      operationId: nftStoreUploadDirectoryPOST
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/body_15'
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_201_4'
+        "400":
+          description: Failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+      security:
+      - APIKey: []
+      x-swagger-router-controller: Store
+  /nft/send/quickSend:
+    post:
+      tags:
+      - Cross-chain Send
+      summary: Send Quick-minted NFT across Chains
+      description: Sends a quick-minted NFT from one block chain to another. Sending
+        NFTs accross chains is a unique feature of Omnichain NFTs
+      operationId: nftSendQuickSendPOST
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/body_16'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_14'
+        "400":
+          description: Failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+      security:
+      - APIKey: []
+      x-swagger-router-controller: CrossChainSend
+  /nft/send/enableCrossChainSend:
+    post:
+      tags:
+      - Cross-chain Send
+      summary: Enable Cross-chain Sends
+      description: Turn on the ability to send your NFT (minted with your created
+        custom contract) across chains
+      operationId: nftSendEnableCrossChainSendPOST
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/body_17'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_14'
+        "400":
+          description: Failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+      security:
+      - APIKey: []
+      x-swagger-router-controller: CrossChainSend
+  /nft/send/crossChainSend:
+    post:
+      tags:
+      - Cross-chain Send
+      summary: Send your NFT across Chains
+      description: Sends an NFT (minted from your created custom contract) from one
+        block chain to another. Sending NFTs accross chains is a unique feature of
+        Omnichain NFTs
+      operationId: nftSendCrossChainSendPOST
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/body_18'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_14'
+        "400":
+          description: Failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+      security:
+      - APIKey: []
+      x-swagger-router-controller: CrossChainSend
+  /nft/userOps/deployedContracts:
+    get:
+      tags:
+      - User
+      summary: Retrieve deployed contracts
+      description: Produce a list of all your deployed contracts
+      operationId: nftUserOpsDeployedContractsGET
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_15'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 401
+                message: Please authenticate
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 403
+                message: Forbidden
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 404
+                message: Not found
+      security:
+      - APIKey: []
+      x-swagger-router-controller: User
+  /nft/userOps/nftsMinted:
+    get:
+      tags:
+      - User
+      summary: Retrieve your minted NFTs
+      description: Produce a list of all your minted NFTs
+      operationId: nftUserOpsNftsMintedGET
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_15'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 401
+                message: Please authenticate
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 403
+                message: Forbidden
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 404
+                message: Not found
+      security:
+      - APIKey: []
+      x-swagger-router-controller: User
+  /nft/userOps/ipfsUploads:
+    get:
+      tags:
+      - User
+      summary: Retrieve your uploaded IPFS files
+      description: Produce a list of all your minted NFTs
+      operationId: nftUserOpsIpfsUploadsGET
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_15'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 401
+                message: Please authenticate
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 403
+                message: Forbidden
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 404
+                message: Not found
+      security:
+      - APIKey: []
+      x-swagger-router-controller: User
+  /nft/userOps/transactionDetails:
+    post:
+      tags:
+      - User
+      summary: Retrieve specific transaction details
+      description: Get details for a specific transaction
+      operationId: nftUserOpsTransactionDetailsPOST
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/body_19'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_15'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 401
+                message: Please authenticate
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 403
+                message: Forbidden
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 404
+                message: Not found
+      security:
+      - APIKey: []
+      x-swagger-router-controller: User
+  /nft/update/transferOperator:
+    post:
+      tags:
+      - Update
+      summary: Transfer Contract Operator
+      description: Transfer the Operator of your deployed collection contract. Works
+        with only collection contracts.
+      operationId: nftUpdateTransferOperatorPOST
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/body_20'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_15'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 401
+                message: Please authenticate
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 403
+                message: Forbidden
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 404
+                message: Not found
+      security:
+      - APIKey: []
+      x-swagger-router-controller: Update
+  /nft/update/addToAllowList:
+    post:
+      tags:
+      - Update
+      summary: Add addresses to Allowlist
+      description: Add an address (or group of addresses) to the allowlist of your
+        collection contract.
+      operationId: nftUpdateAddToAllowListPOST
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/body_21'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_15'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 401
+                message: Please authenticate
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 403
+                message: Forbidden
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 404
+                message: Not found
+      security:
+      - APIKey: []
+      x-swagger-router-controller: Update
+  /nft/userOps/userCollectionContractDetails:
+    post:
+      tags:
+      - User
+      summary: Get Contract Details
+      description: Display details of your collection contract.
+      operationId: nftUserOpsUserCollectionContractDetailsPOST
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/body_22'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_15'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 401
+                message: Please authenticate
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 403
+                message: Forbidden
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 404
+                message: Not found
+      security:
+      - APIKey: []
+      x-swagger-router-controller: User
+  /nft/userOps/payeeAtIndex:
+    post:
+      tags:
+      - User
+      summary: Get Payee
+      description: Display details of Payee at a certain Index.
+      operationId: nftUserOpsPayeeAtIndexPOST
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/body_23'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_15'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 401
+                message: Please authenticate
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 403
+                message: Forbidden
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 404
+                message: Not found
+      security:
+      - APIKey: []
+      x-swagger-router-controller: User
+  /nft/userOps/allowListSharesForAddress:
+    post:
+      tags:
+      - User
+      summary: Get Allowlist Shares
+      description: Display Allowlist shares for a specific address.
+      operationId: nftUserOpsAllowListSharesForAddressPOST
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/body_24'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_15'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 401
+                message: Please authenticate
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 403
+                message: Forbidden
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 404
+                message: Not found
+      security:
+      - APIKey: []
+      x-swagger-router-controller: User
+  /nft/userOps/contractPaymentDetails:
+    post:
+      tags:
+      - User
+      summary: Get Payee Payment Details
+      description: Display payment details for a specific payee of a contract.
+      operationId: nftUserOpsContractPaymentDetailsPOST
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/body_25'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_15'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 401
+                message: Please authenticate
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 403
+                message: Forbidden
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 404
+                message: Not found
+      security:
+      - APIKey: []
+      x-swagger-router-controller: User
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+          format: email
+        name:
+          type: string
+        role:
+          type: string
+          enum:
+          - user
+          - admin
+      example:
+        id: 5ebac534954b54139806c112
+        email: fake@example.com
+        name: fake name
+        role: user
+    Token:
+      type: object
+      properties:
+        token:
+          type: string
+        expires:
+          type: string
+          format: date-time
+      example:
+        token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZWJhYzUzNDk1NGI1NDEzOTgwNmMxMTIiLCJpYXQiOjE1ODkyOTg0ODQsImV4cCI6MTU4OTMwMDI4NH0.m1U63blB0MLej_WfB7yC2FTMnCziif9X8yzwDEfJXAg
+        expires: 2020-05-12T16:18:04.793Z
+    AuthTokens:
+      type: object
+      properties:
+        access:
+          $ref: '#/components/schemas/Token'
+        refresh:
+          $ref: '#/components/schemas/Token'
+    Error:
+      type: object
+      properties:
+        code:
+          type: number
+        message:
+          type: string
+    NFTData:
+      type: array
+      example:
+      - contractAddress: 0xed5af388653567af2f388e6224dc7c4b3241c544
+        tokenID: 40
+        tokenName: Azuki
+      - contractAddress: 0x23581767a106ae21c074b2276d25e5c3e136a68b
+        tokenID: 6504
+        tokenName: Moonbirds
+      items:
+        $ref: '#/components/schemas/NFTData_inner'
+    NFTDetails:
+      type: object
+      properties:
+        name:
+          type: string
+        symbol:
+          type: string
+        tokenId:
+          type: string
+        owner:
+          type: string
+        tokenURI:
+          type: string
+      example:
+        name: Azuki
+        symbol: AZUKI
+        tokenId: 40
+        owner: 0x333e58f8d77a8add1032CfdD781383E934f92d6F
+        tokenURI: https://ikzttp.mypinata.cloud/ipfs/QmQFkLSQysj94s5GvTHPyzTxrawwtjgiiYS2TBLgrvw8CW/40
+    VwTransaction:
+      type: object
+      properties:
+        transactionID:
+          type: string
+        status:
+          type: string
+      example:
+        transactionID: 6327921e418fb0564c4d063b
+        status: Sent
+    Transaction:
+      type: array
+      example:
+      - blockNumber: "14554041"
+        timeStamp: "1649540923"
+        hash: 0x5b492a277270b4e28f0632b747db44a8650e9092488c9c4d4415ad72a433b382
+        nonce: "136"
+        blockHash: 0x5b5a2faa3e89ef2b58b483086619b30024c0a3ebed7bf744090d278e66e52a08
+        from: 0x7d77a304290a422d5c003231ffc1160cb73c60fb
+        contractAddress: 0x641f2a0f4dfb439870aada9f0d136d62fd80ad07
+        to: 0x4e514d9fcb58503dba5bb2b0f477792c03c8426d
+        tokenID: "18"
+        tokenName: flymeta
+        tokenSymbol: fm
+        tokenDecimal: "0"
+        transactionIndex: "66"
+        gas: "265806"
+        gasPrice: "32084697251"
+        gasUsed: "199525"
+        cumulativeGasUsed: "7008966"
+        input: deprecated
+        confirmations: "264962"
+      items:
+        $ref: '#/components/schemas/Transaction_inner'
+    floorPrice:
+      type: object
+      properties:
+        source:
+          type: string
+        eventType:
+          type: string
+        kind:
+          type: string
+        slug:
+          type: string
+        chain:
+          type: string
+        floorAsk:
+          type: number
+        previousFloorAsk:
+          type: number
+        contractId:
+          type: string
+        timestamp:
+          type: string
+      example:
+        source: X2Y2
+        eventType: floorPriceChangeEvent
+        kind: cancel
+        slug: boredapeyachtclub
+        chain: ethereum
+        floorAsk: 79
+        previousFloorAsk: 78.8
+        contractId: 0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d
+        timestamp: 2022-09-26T07:33:26.000Z
+    historicalStats:
+      type: object
+      properties:
+        eventType:
+          type: string
+        slug:
+          type: string
+        contractId:
+          type: string
+        chain:
+          type: string
+        floorSale:
+          type: number
+        salesCount:
+          type: integer
+        rank:
+          type: integer
+        volume:
+          type: number
+        timestamp:
+          type: string
+      example:
+        eventType: dailyHistoryEvent
+        slug: boredapeyachtclub
+        contractId: 0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d
+        chain: ethereum
+        floorSale: 71
+        salesCount: 7
+        rank: 7
+        volume: 575.1
+        timestamp: 2022-08-01T04:00:00.000Z
+    salesEvent:
+      type: object
+      properties:
+        source:
+          type: string
+        eventType:
+          type: string
+        orderSide:
+          type: string
+        slug:
+          type: string
+        chain:
+          type: string
+        sale:
+          type: number
+        saleUsd:
+          type: number
+        contractId:
+          type: string
+        tokenId:
+          type: string
+        from:
+          type: string
+        to:
+          type: string
+        block:
+          type: string
+        txHash:
+          type: string
+        timestamp:
+          type: string
+      example:
+        source: opensea.io
+        eventType: salesEvent
+        orderSide: ask
+        slug: boredapeyachtclub
+        chain: ethereum
+        sale: 769.9
+        saleUsd: 1174405.54931
+        contractId: 0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d
+        tokenId: "6588"
+        from: 0x29e2ffcbece02e9b9d0470afa7a7c0b9c81923ff
+        to: 0xec7e5a49ee8e95a89a1a881bbf1aae2ec854d790
+        block: "15448013"
+        txHash: 0xb2b2276d9073807bf64527200a74aa49581394b4f9cdb99d403578167d8fb559
+        timestamp: 2022-08-31T21:41:52.000Z
+    transferEvent:
+      type: object
+      properties:
+        amount:
+          type: integer
+        block:
+          type: string
+        chain:
+          type: string
+        contractId:
+          type: string
+        slug:
+          type: string
+        from:
+          type: string
+        to:
+          type: string
+        tokenId:
+          type: string
+        txHash:
+          type: string
+        id:
+          type: string
+        timestamp:
+          type: string
+      example:
+        amount: 1
+        block: "15451208"
+        chain: ethereum
+        contractId: 0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d
+        slug: boredapeyachtclub
+        from: 0x3b968d2d299b895a5fcf3bba7a64ad0f566e6f88
+        to: 0x70b97a0da65c15dfb0ffa02aee6fa36e507c2762
+        tokenId: "7397"
+        txHash: 0xf41bcba23e8f6421ccae857be1cc96b06c6ab2fdb10dd4e07ab72882078345ec
+        id: dc2224522229e2ffcbece02e9b9d0470afa7a7c0b9c81923ff
+        timestamp: 2022-09-01T06:05:10.000Z
+    ownershipData:
+      type: object
+      properties:
+        address:
+          type: string
+        chain:
+          type: string
+        contractId:
+          type: string
+        slug:
+          type: string
+        tokenCount:
+          type: integer
+        floorAskPrice:
+          type: number
+        onSaleCount:
+          type: integer
+        topBidValue:
+          type: number
+        totalBidValue:
+          type: number
+        id:
+          type: string
+        lastUpdated:
+          type: string
+      example:
+        address: 0xdbfd76af2157dc15ee4e57f3f942bb45ba84af24
+        chain: ethereum
+        contractId: 0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d
+        slug: boredapeyachtclub
+        tokenCount: 280
+        floorAskPrice: null
+        onSaleCount: 0
+        topBidValue: 1.146
+        totalBidValue: 320.88
+        id: dc2224522229e2ffcbece02e9b9d0470afa7a7c0b9c81923ff
+        lastUpdated: 2022-09-27T19:08:11.675Z
+    collectionData:
+      type: object
+      properties:
+        chain:
+          type: string
+        description:
+          type: string
+        discordUrl:
+          type: string
+        externalUrl:
+          type: string
+        floorSale:
+          $ref: '#/components/schemas/collectionData_floorSale'
+        image:
+          type: string
+        onSaleCount:
+          type: integer
+        primaryContract:
+          type: string
+        rank:
+          $ref: '#/components/schemas/collectionData_rank'
+        royalties:
+          $ref: '#/components/schemas/collectionData_royalties'
+        slug:
+          type: string
+        tokenCount:
+          type: integer
+        twitterUsername:
+          type: string
+        volume:
+          $ref: '#/components/schemas/collectionData_volume'
+        id:
+          type: string
+      example:
+        chain: ethereum
+        description: ethereum
+        contractId: The Bored Ape Yacht Club is a collection of 10,000 unique Bored
+          Ape NFTs— unique digital collectibles living on the Ethereum blockchain...
+        discordUrl: https://discord.gg/3P5K3dzgdB
+        externalUrl: http://www.boredapeyachtclub.com/
+        floorSale:
+          "1day": 65
+          "7day": 67.69
+          "30day": 68.681
+        image: https://i.seadn.io/gae/Ju9CkWtV-1Okvf45wo8UctR-M9He2PjILP0oOvxE89AyiPPGtrR3gysu1Zgy0hjd2xKIgjJJtWIc0ybj4Vd7wv8t3pxDGHoJBzDB?w=500&auto=format
+        onSaleCount: 764
+        primaryContract: 0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d
+        rank:
+          "1day": 2
+          "7day": 2
+          "30day": 1
+          allTime: 3
+        royalties:
+          bps: 250
+          recipient: 0xa858ddc0445d8131dac4d1de01f834ffcba52ef1
+        slug: boredapeyachtclub
+        tokenCount: 10000
+        twitterUsername: BoredApeYC
+        volume:
+          "1day": 723.17
+          "7day": 3657.87519
+          "30day": 23609.35266
+          allTime: 793507.11896
+        id: 0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d
+    nftAttributes:
+      type: object
+      properties:
+        contractId:
+          type: string
+        slug:
+          type: string
+        key:
+          type: string
+        value:
+          type: string
+        count:
+          type: number
+        id:
+          type: string
+      example:
+        contractId: 0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d
+        slug: boredapeyachtclub
+        key: Background
+        value: Orange
+        count: 1273
+        id: 0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d:ethereum:Background->Orange
+    nftAttributesWithTokens:
+      type: object
+      properties:
+        contractId:
+          type: string
+        slug:
+          type: string
+        key:
+          type: string
+        value:
+          type: string
+        count:
+          type: number
+        id:
+          type: string
+        tokens:
+          type: array
+          items:
+            type: string
+      example:
+        contractId: 0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d
+        slug: boredapeyachtclub
+        key: Mouth
+        value: Bored Unshaven Pizza
+        count: 1273
+        id: 0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d:ethereum:Background->Orange
+        tokens:
+        - "208"
+        - "1459"
+        - "2402"
+        - "2550"
+        - "2587"
+        - "2794"
+        - "3046"
+        - "3722"
+        - "3953"
+        - "4448"
+        - "4922"
+        - "5353"
+        - "5491"
+        - "5615"
+        - "5800"
+        - "6445"
+        - "7253"
+        - "7265"
+        - "7653"
+        - "7678"
+        - "8921"
+        - "8976"
+        - "9455"
+        - "9542"
+        - "9606"
+        - "9796"
+    inline_response_200:
+      type: object
+      properties:
+        nfts:
+          $ref: '#/components/schemas/NFTData'
+      example:
+        nfts:
+        - contractAddress: 0xed5af388653567af2f388e6224dc7c4b3241c544
+          tokenID: 40
+          tokenName: Azuki
+        - contractAddress: 0x23581767a106ae21c074b2276d25e5c3e136a68b
+          tokenID: 6504
+          tokenName: Moonbirds
+    inline_response_200_1:
+      type: object
+      properties:
+        nft_transactions:
+          $ref: '#/components/schemas/Transaction'
+      example:
+        nft_transactions:
+        - blockNumber: "14554041"
+          timeStamp: "1649540923"
+          hash: 0x5b492a277270b4e28f0632b747db44a8650e9092488c9c4d4415ad72a433b382
+          nonce: "136"
+          blockHash: 0x5b5a2faa3e89ef2b58b483086619b30024c0a3ebed7bf744090d278e66e52a08
+          from: 0x7d77a304290a422d5c003231ffc1160cb73c60fb
+          contractAddress: 0x641f2a0f4dfb439870aada9f0d136d62fd80ad07
+          to: 0x4e514d9fcb58503dba5bb2b0f477792c03c8426d
+          tokenID: "18"
+          tokenName: flymeta
+          tokenSymbol: fm
+          tokenDecimal: "0"
+          transactionIndex: "66"
+          gas: "265806"
+          gasPrice: "32084697251"
+          gasUsed: "199525"
+          cumulativeGasUsed: "7008966"
+          input: deprecated
+          confirmations: "264962"
+    inline_response_200_2:
+      type: object
+      properties:
+        contract_transactions:
+          $ref: '#/components/schemas/Transaction'
+      example:
+        contract_transactions:
+        - blockNumber: "14554041"
+          timeStamp: "1649540923"
+          hash: 0x5b492a277270b4e28f0632b747db44a8650e9092488c9c4d4415ad72a433b382
+          nonce: "136"
+          blockHash: 0x5b5a2faa3e89ef2b58b483086619b30024c0a3ebed7bf744090d278e66e52a08
+          from: 0x7d77a304290a422d5c003231ffc1160cb73c60fb
+          contractAddress: 0x641f2a0f4dfb439870aada9f0d136d62fd80ad07
+          to: 0x4e514d9fcb58503dba5bb2b0f477792c03c8426d
+          tokenID: "18"
+          tokenName: flymeta
+          tokenSymbol: fm
+          tokenDecimal: "0"
+          transactionIndex: "66"
+          gas: "265806"
+          gasPrice: "32084697251"
+          gasUsed: "199525"
+          cumulativeGasUsed: "7008966"
+          input: deprecated
+          confirmations: "264962"
+    inline_response_200_3:
+      type: object
+      properties:
+        nft_details:
+          $ref: '#/components/schemas/NFTDetails'
+      example:
+        nft_details:
+          name: Azuki
+          symbol: AZUKI
+          tokenId: 40
+          owner: 0x333e58f8d77a8add1032CfdD781383E934f92d6F
+          tokenURI: https://ikzttp.mypinata.cloud/ipfs/QmQFkLSQysj94s5GvTHPyzTxrawwtjgiiYS2TBLgrvw8CW/40
+    inline_response_200_4:
+      type: object
+      properties:
+        floorPrices:
+          $ref: '#/components/schemas/floorPrice'
+      example:
+        floorPrices:
+          source: X2Y2
+          eventType: floorPriceChangeEvent
+          kind: cancel
+          slug: boredapeyachtclub
+          chain: ethereum
+          floorAsk: 79
+          previousFloorAsk: 78.8
+          contractId: 0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d
+          timestamp: 2022-09-26T07:33:26.000Z
+    inline_response_200_5:
+      type: object
+      properties:
+        floorPrices:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/floorPrice'
+      example:
+        floorPrices:
+        - ""
+        - ""
+    inline_response_200_6:
+      type: object
+      properties:
+        historicalStats:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/historicalStats'
+      example:
+        historicalStats:
+        - ""
+        - ""
+    inline_response_200_7:
+      type: object
+      properties:
+        sales:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/salesEvent'
+      example:
+        sales:
+        - ""
+        - ""
+    inline_response_200_8:
+      type: object
+      properties:
+        transfers:
+          $ref: '#/components/schemas/inline_response_200_8_transfers'
+      example:
+        transfers:
+          totalResults: 31
+          limit: 50
+          totalPages: 1
+          page: 1
+          results:
+          - ""
+          - ""
+    inline_response_200_9:
+      type: object
+      properties:
+        transfers:
+          $ref: '#/components/schemas/inline_response_200_9_transfers'
+      example:
+        transfers:
+          totalResults: 31
+          limit: 50
+          totalPages: 1
+          page: 1
+          results:
+          - ""
+          - ""
+    inline_response_200_10:
+      type: object
+      properties:
+        transfers:
+          $ref: '#/components/schemas/inline_response_200_10_transfers'
+      example:
+        transfers:
+          totalResults: 31
+          limit: 50
+          totalPages: 1
+          page: 1
+          results:
+          - ""
+          - ""
+    inline_response_200_11:
+      type: object
+      properties:
+        collections:
+          $ref: '#/components/schemas/inline_response_200_11_collections'
+      example:
+        collections:
+          totalResults: 31
+          limit: 50
+          totalPages: 1
+          page: 1
+          results:
+          - ""
+          - ""
+    inline_response_200_12:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/inline_response_200_12_attributes'
+      example:
+        attributes:
+          totalResults: 168
+          limit: 500
+          totalPages: 1
+          page: 1
+          results:
+          - ""
+          - ""
+    inline_response_200_13:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/inline_response_200_13_attributes'
+      example:
+        attributes:
+          totalResults: 168
+          limit: 500
+          totalPages: 1
+          page: 1
+          results:
+          - ""
+          - ""
+    body:
+      required:
+      - chain
+      - contractName
+      - contractSymbol
+      - recipientAddress
+      type: object
+      properties:
+        contractName:
+          type: string
+        contractSymbol:
+          type: string
+        recipientAddress:
+          type: string
+        chain:
+          type: string
+          enum:
+          - goerli
+          - bsc-testnet
+          - fuji
+          - mumbai
+          - arbitrum-goerli
+          - optimism-goerli
+          - fantom-testnet
+          - ethereum
+          - bsc
+          - avalanche
+          - polygon
+          - arbitrum
+          - optimism
+          - fantom
+        contractType:
+          type: string
+          enum:
+          - nft721
+          - nft721A
+      example:
+        contractName: TestContractName
+        contractSymbol: TestSymbol
+        recipientAddress: 0x33145a6258e89b6E0796d237A3048A3852cCaeQ7
+      default:
+        chain: goerli
+        contractType: nft721
+    inline_response_200_14:
+      type: object
+      properties:
+        transaction_details:
+          $ref: '#/components/schemas/VwTransaction'
+      example:
+        transaction_details:
+          transactionID: 6327921e418fb0564c4d063b
+          status: Sent
+    inline_response_400:
+      type: object
+      properties:
+        code:
+          type: number
+        message:
+          type: string
+      example:
+        code: 400
+        message: Cannot read property filePath of null
+    body_1:
+      required:
+      - chain
+      - contractName
+      - contractSymbol
+      - recipientAddress
+      type: object
+      properties:
+        contractName:
+          type: string
+        contractSymbol:
+          type: string
+        recipientAddress:
+          type: string
+        chain:
+          type: string
+          enum:
+          - goerli
+          - bsc-testnet
+          - fuji
+          - mumbai
+          - arbitrum-goerli
+          - optimism-goerli
+          - fantom-testnet
+          - ethereum
+          - bsc
+          - avalanche
+          - polygon
+          - arbitrum
+          - optimism
+          - fantom
+      example:
+        contractName: TestContractName
+        contractSymbol: TestSymbol
+        recipientAddress: 0x33145a6258e89b6E0796d237A3048A3852cCaeQ7
+      default:
+        chain: goerli
+    body_2:
+      required:
+      - chain
+      - contractAddress
+      - tokenId
+      type: object
+      properties:
+        contractAddress:
+          type: string
+        tokenId:
+          type: string
+        chain:
+          type: string
+          enum:
+          - goerli
+          - bsc-testnet
+          - fuji
+          - mumbai
+          - arbitrum-goerli
+          - optimism-goerli
+          - fantom-testnet
+          - ethereum
+          - bsc
+          - avalanche
+          - polygon
+          - arbitrum
+          - optimism
+          - fantom
+      example:
+        recipientAddress: 0x33145a6258e89b6E0796d237A3048A3852cCaeQ7
+      default:
+        chain: goerli
+    body_3:
+      required:
+      - allowListMintStartTime
+      - allowlistMintPriceInWei
+      - baseTokenURI
+      - chain
+      - contractAddress
+      - maxMintPerAddress
+      - maxMintableBatchSize
+      - maxSupply
+      - metadataFrozen
+      - ownerAddress
+      - publicPriceInWei
+      - publicSaleStartTime
+      - recipientAddress
+      - royaltiesAddress
+      - royaltiesInBps
+      - totalAllowlistQty
+      - totalReserveQty
+      type: object
+      properties:
+        contractAddress:
+          type: string
+        maxMintPerAddress:
+          type: string
+        totalReserveQty:
+          type: string
+        totalAllowlistQty:
+          type: string
+        maxSupply:
+          type: string
+        maxMintableBatchSize:
+          type: string
+        royaltiesInBps:
+          type: string
+        royaltiesAddress:
+          type: string
+        ownerAddress:
+          type: string
+        tokenURIPrereveal:
+          type: string
+        baseTokenURI:
+          type: string
+        allowListMintStartTime:
+          type: string
+        publicSaleStartTime:
+          type: string
+        allowlistMintPriceInWei:
+          type: string
+        publicPriceInWei:
+          type: string
+        metadataFrozen:
+          type: string
+          enum:
+          - "false"
+          - "true"
+        recipientAddress:
+          type: string
+        chain:
+          type: string
+          enum:
+          - goerli
+          - bsc-testnet
+          - fuji
+          - mumbai
+          - arbitrum-goerli
+          - optimism-goerli
+          - fantom-testnet
+          - ethereum
+          - bsc
+          - avalanche
+          - polygon
+          - arbitrum
+          - optimism
+          - fantom
+      example:
+        contractAddress: 1.0480895442482707E48
+        maxMintPerAddress: 5
+        totalReserveQty: 500
+        totalAllowlistQty: 100
+        maxSupply: 1000
+        maxMintableBatchSize: 5
+        royaltiesInBps: 100
+        royaltiesAddress: 1.048089544248271E48
+        ownerAddress: 1.048089544248271E48
+        tokenURIPrereveal: null
+        allowListMintStartTime: 1658167690
+        publicSaleStartTime: 1658167690
+        allowlistMintPriceInWei: 0
+        publicPriceInWei: 1
+        metadataFrozen: false
+        recipientAddress: 1.048089544248271E48
+      default:
+        chain: goerli
+        metadataFrozen: false
+    body_4:
+      required:
+      - chain
+      - contractAddress
+      type: object
+      properties:
+        contractAddress:
+          type: string
+        chain:
+          type: string
+          enum:
+          - goerli
+          - bsc-testnet
+          - fuji
+          - mumbai
+          - arbitrum-goerli
+          - optimism-goerli
+          - fantom-testnet
+          - ethereum
+          - bsc
+          - avalanche
+          - polygon
+          - arbitrum
+          - optimism
+          - fantom
+        tokenURIPrereveal:
+          type: string
+        allowListMintStartTime:
+          type: string
+        publicSaleStartTime:
+          type: string
+        allowlistMintPriceInWei:
+          type: string
+        publicPriceInWei:
+          type: string
+        metadataFrozen:
+          type: string
+        baseTokenURI:
+          type: string
+      example:
+        contractName: TestContractName
+        contractSymbol: TestContractSymbol
+        recipientAddress: 1.048089544248271E48
+      default:
+        chain: goerli
+    body_5:
+      required:
+      - chain
+      - contractAddress
+      - withdrawAddress
+      type: object
+      properties:
+        contractAddress:
+          type: string
+        withdrawAddress:
+          type: string
+        chain:
+          type: string
+          enum:
+          - goerli
+          - bsc-testnet
+          - fuji
+          - arbitrum-goerli
+          - optimism-goerli
+          - fantom-testnet
+          - ethereum
+          - bsc
+          - avalanche
+          - polygon
+          - arbitrum
+          - optimism
+          - fantom
+      example:
+        contractAddress: 2.916124294435724E47
+      default:
+        chain: goerli
+    body_6:
+      required:
+      - chain
+      - description
+      - filePath
+      - name
+      - recipientAddress
+      type: object
+      properties:
+        filePath:
+          type: string
+          format: binary
+        name:
+          type: string
+        description:
+          type: string
+        recipientAddress:
+          type: string
+        allowPlatformToOperateToken:
+          type: string
+          enum:
+          - "true"
+          - "false"
+        chain:
+          type: string
+          enum:
+          - goerli
+          - bsc-testnet
+          - fuji
+          - mumbai
+          - arbitrum-goerli
+          - optimism-goerli
+          - fantom-testnet
+          - ethereum
+          - bsc
+          - avalanche
+          - polygon
+          - arbitrum
+          - optimism
+          - fantom
+      example:
+        name: SampleNFTName
+        description: Sample Description
+      default:
+        allowPlatformToOperateToken: true
+        chain: goerli
+    body_7:
+      required:
+      - chain
+      - metadataUrl
+      - recipientAddress
+      type: object
+      properties:
+        metadataUrl:
+          type: string
+        recipientAddress:
+          type: string
+        allowPlatformToOperateToken:
+          type: string
+          enum:
+          - "true"
+          - "false"
+        chain:
+          type: string
+          enum:
+          - goerli
+          - bsc-testnet
+          - fuji
+          - mumbai
+          - arbitrum-goerli
+          - optimism-goerli
+          - fantom-testnet
+          - ethereum
+          - avalanche
+          - polygon
+          - arbitrum
+          - optimism
+          - fantom
+      example:
+        metadataUrl: https://images.mydrive.com/photos/1258/sample-photo-2105a3e.jpeg
+        recipientAddress: 0x33145a6258e89b6E0796d237A3048A3852cCaeQ7
+      default:
+        allowPlatformToOperateToken: true
+        chain: goerli
+    body_8:
+      required:
+      - chain
+      - contractAddress
+      - mintQty
+      - recipientAddress
+      type: object
+      properties:
+        mintQty:
+          type: string
+        contractAddress:
+          type: string
+        recipientAddress:
+          type: string
+        chain:
+          type: string
+          enum:
+          - goerli
+          - bsc-testnet
+          - fuji
+          - mumbai
+          - arbitrum-goerli
+          - optimism-goerli
+          - fantom-testnet
+          - ethereum
+          - avalanche
+          - polygon
+          - arbitrum
+          - optimism
+          - fantom
+      example:
+        metadataUrl: https://ipfs.io/ipfs/bafkreijyusklegk4r3jft4fucwvo4pzzwczjecsfg5qrjgp2arevnel2ee/metadata.json
+        recipientAddress: 0x33145a6258e89b6E0796d237A3048A3852cCaeQ7
+      default:
+        chain: goerli
+    body_9:
+      required:
+      - chain
+      - contractAddress
+      - metadataUrl
+      - recipientAddress
+      type: object
+      properties:
+        metadataUrl:
+          type: string
+        contractAddress:
+          type: string
+        recipientAddress:
+          type: string
+        chain:
+          type: string
+          enum:
+          - goerli
+          - bsc-testnet
+          - fuji
+          - mumbai
+          - arbitrum-goerli
+          - optimism-goerli
+          - fantom-testnet
+          - ethereum
+          - avalanche
+          - polygon
+          - arbitrum
+          - optimism
+          - fantom
+      example:
+        fileUrl: https://ipfs.io/ipfs/bafkreifsrskljjuyyk4r3jft4fucwoij4pzzwczjecsfg5qrjgp7arevnel2ee
+        tokenId: 18
+        sourceAddress: 0x8ij87u78okkkjc7shc0987s6cdc
+      default:
+        chain: goerli
+    body_10:
+      required:
+      - chain
+      - contractAddress
+      - description
+      - filePath
+      - name
+      - recipientAddress
+      type: object
+      properties:
+        filePath:
+          type: string
+          format: binary
+        name:
+          type: string
+        description:
+          type: string
+        recipientAddress:
+          type: string
+        contractAddress:
+          type: string
+        chain:
+          type: string
+          enum:
+          - goerli
+          - bsc-testnet
+          - fuji
+          - mumbai
+          - arbitrum-goerli
+          - optimism-goerli
+          - fantom-testnet
+          - ethereum
+          - avalanche
+          - polygon
+          - arbitrum
+          - optimism
+          - fantom
+      example:
+        name: SampleNFTName
+        description: Sample Description
+    body_11:
+      required:
+      - filePath
+      type: object
+      properties:
+        filePath:
+          type: string
+          format: binary
+      example:
+        filePath: Your file path
+    inline_response_201:
+      type: object
+      properties:
+        ipfs_url:
+          type: string
+      example:
+        ipfs_storage:
+          ipfs_url: https://ipfs.io/ipfs/bakiuifsrsklegk4r3jft4fucwvo4pzzwczjecsfg5qrjgp2arevnel2ee
+    body_12:
+      required:
+      - fileUrl
+      type: object
+      properties:
+        fileUrl:
+          type: string
+      example:
+        fileUrl: https://images.mydrive.com/photos/1258/sample-photo-2105a3e.jpeg
+    inline_response_201_1:
+      type: object
+      properties:
+        ipfs_url:
+          type: string
+      example:
+        ipfs_storage:
+          ipfs_url: https://ipfs.io/ipfs/bafkreifsrskljjuyyk4r3jft4fucwvo4pzzwczjecsfg5qrjgp2arevnel2ee
+    inline_response_400_1:
+      type: object
+      properties:
+        code:
+          type: number
+        message:
+          type: string
+      example:
+        code: 400
+        message: Cannot read property fileUrl of null
+    body_13:
+      required:
+      - description
+      - fileUrl
+      - name
+      type: object
+      properties:
+        fileUrl:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+      example:
+        fileUrl: https://images.mydrive.com/photos/1258/sample-photo-2105a3e.jpeg
+        name: TestImageName123
+        description: Test Description
+    inline_response_201_2:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        metadata_url:
+          type: string
+      example:
+        ipfs_storage:
+          name: Test Name
+          description: This is a description
+          metadata_url: https://ipfs.io/ipfs/bafkreijibsklegk4r3jft4fucwvo4pzzwczjecsfg5qrjgp2arevnel2ee/metadata.json
+          ipfs_url: https://ipfs.io/ipfs/bafybeibvurpouwg33lglxevutbizjj2lhwi5i6t3gz3tfuiijfrthim4q74/943.png
+    body_14:
+      required:
+      - description
+      - filePath
+      - name
+      type: object
+      properties:
+        filePath:
+          type: string
+          format: binary
+        name:
+          type: string
+        description:
+          type: string
+      example:
+        fileUrl: https://images.mydrive.com/photos/1258/sample-photo-2105a3e.jpeg
+        name: TestImageName123
+        description: Test Description
+    inline_response_201_3:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        metadata_url:
+          type: string
+      example:
+        ipfs_storage:
+          name: TestName
+          description: This is a description
+          metadata_url: https://ipfs.io/ipfs/bafkreifsrsklegk4r3jft4fucwvo4pzzwczjecsfg5qrjgp2arevnel2ee/metadata.json
+          ipfs_url: https://ipfs.io/ipfs/bafybeibvurpadg33lglxevutbizjj2lhwi5i6t3gz3tfuiijfrthim4q74/943.png
+    body_15:
+      required:
+      - filePath
+      type: object
+      properties:
+        filePath:
+          type: string
+          format: binary
+      example:
+        fileUrl: https://images.mydrive.com/photos/1258/sample-photo-2105a3e.jpeg
+        name: TestImageName
+        description: Test Description
+    inline_response_201_4:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        metadata_url:
+          type: string
+      example:
+        ipfs_storage:
+          name: Test Name
+          description: This is a description
+          metadata_url: https://ipfs.io/ipfs/bafkreifsrskleg5f53jft4fucwvo4pzzwczjecsfg5qrjgp2arevnel2ee/metadata.json
+          ipfs_url: https://ipfs.io/ipfs/bafyj8rpadg33lglxevutbizjj2lhwi5i6t3gz3tfuiijfrthim4q74/943.png
+    body_16:
+      required:
+      - destChain
+      - recipientWalletAddress
+      - sourceChain
+      - sourceWalletAddress
+      - tokenId
+      type: object
+      properties:
+        sourceChain:
+          type: string
+          enum:
+          - goerli
+          - bsc-testnet
+          - fuji
+          - mumbai
+          - arbitrum-goerli
+          - optimism-goerli
+          - fantom-testnet
+          - ethereum
+          - avalanche
+          - polygon
+          - arbitrum
+          - optimism
+          - fantom
+        destChain:
+          type: string
+          enum:
+          - goerli
+          - bsc-testnet
+          - fuji
+          - mumbai
+          - arbitrum-goerli
+          - optimism-goerli
+          - fantom-testnet
+          - ethereum
+          - avalanche
+          - polygon
+          - arbitrum
+          - optimism
+          - fantom
+        tokenId:
+          type: string
+        sourceWalletAddress:
+          type: string
+        recipientWalletAddress:
+          type: string
+      example:
+        tokenId: 18
+        sourceWalletAddress: 0x8ij87u78okkkjc7shc0987s6cdc
+    body_17:
+      required:
+      - destChain
+      - destContractAddress
+      - sourceChain
+      - sourceContractAddress
+      type: object
+      properties:
+        sourceChain:
+          type: string
+          enum:
+          - goerli
+          - bsc-testnet
+          - fuji
+          - mumbai
+          - arbitrum-goerli
+          - optimism-goerli
+          - fantom-testnet
+          - ethereum
+          - avalanche
+          - polygon
+          - arbitrum
+          - optimism
+          - fantom
+        destChain:
+          type: string
+          enum:
+          - goerli
+          - bsc-testnet
+          - fuji
+          - mumbai
+          - arbitrum-goerli
+          - optimism-goerli
+          - fantom-testnet
+          - ethereum
+          - avalanche
+          - polygon
+          - arbitrum
+          - optimism
+          - fantom
+        sourceContractAddress:
+          type: string
+        destContractAddress:
+          type: string
+      example:
+        sourceContractAddress: 0x8ij87u78okkkjc7shc0987s6cdc
+    body_18:
+      required:
+      - destChain
+      - recipientWalletAddress
+      - sourceChain
+      - sourceWalletAddress
+      - tokenId
+      type: object
+      properties:
+        sourceChain:
+          type: string
+          enum:
+          - goerli
+          - bsc-testnet
+          - fuji
+          - mumbai
+          - arbitrum-goerli
+          - optimism-goerli
+          - fantom-testnet
+          - ethereum
+          - avalanche
+          - polygon
+          - arbitrum
+          - optimism
+          - fantom
+        destChain:
+          type: string
+          enum:
+          - goerli
+          - bsc-testnet
+          - fuji
+          - mumbai
+          - arbitrum-goerli
+          - optimism-goerli
+          - fantom-testnet
+          - ethereum
+          - avalanche
+          - polygon
+          - arbitrum
+          - optimism
+          - fantom
+        tokenId:
+          type: string
+        sourceWalletAddress:
+          type: string
+        recipientWalletAddress:
+          type: string
+      example:
+        tokenId: 18
+        sourceWalletAddress: 0x8ij87u78okkkjc7shc0987s6cdc
+    inline_response_200_15:
+      type: object
+      properties:
+        Transaction:
+          $ref: '#/components/schemas/Transaction'
+      example:
+        Transaction:
+        - blockNumber: "14554041"
+          timeStamp: "1649540923"
+          hash: 0x5b492a277270b4e28f0632b747db44a8650e9092488c9c4d4415ad72a433b382
+          nonce: "136"
+          blockHash: 0x5b5a2faa3e89ef2b58b483086619b30024c0a3ebed7bf744090d278e66e52a08
+          from: 0x7d77a304290a422d5c003231ffc1160cb73c60fb
+          contractAddress: 0x641f2a0f4dfb439870aada9f0d136d62fd80ad07
+          to: 0x4e514d9fcb58503dba5bb2b0f477792c03c8426d
+          tokenID: "18"
+          tokenName: flymeta
+          tokenSymbol: fm
+          tokenDecimal: "0"
+          transactionIndex: "66"
+          gas: "265806"
+          gasPrice: "32084697251"
+          gasUsed: "199525"
+          cumulativeGasUsed: "7008966"
+          input: deprecated
+          confirmations: "264962"
+    body_19:
+      required:
+      - transactionId
+      type: object
+      properties:
+        transactionId:
+          type: string
+    body_20:
+      required:
+      - chain
+      - contractAddress
+      - newOperatorAddress
+      type: object
+      properties:
+        contractAddress:
+          type: string
+        newOperatorAddress:
+          type: string
+        chain:
+          type: string
+          enum:
+          - goerli
+          - bsc-testnet
+          - fuji
+          - arbitrum-goerli
+          - optimism-goerli
+          - fantom-testnet
+          - ethereum
+          - bsc
+          - avalanche
+          - polygon
+          - arbitrum
+          - optimism
+          - fantom
+      default:
+        chain: goerli
+    body_21:
+      required:
+      - addresses
+      - chain
+      - contractAddress
+      - mintSlots
+      type: object
+      properties:
+        contractAddress:
+          type: string
+        addresses:
+          type: string
+        mintSlots:
+          type: string
+        chain:
+          type: string
+          enum:
+          - goerli
+          - bsc-testnet
+          - fuji
+          - arbitrum-goerli
+          - optimism-goerli
+          - fantom-testnet
+          - ethereum
+          - bsc
+          - avalanche
+          - polygon
+          - arbitrum
+          - optimism
+          - fantom
+      example:
+        addresses: 0x33145a8499e89b6E0839d237A3056A3735cCaeD5,  0x54D404D5870Bdf67B2CFcE5f800D253E9A8B686e,
+          0x3B834EDe1a8c1f130c056a92eb5f1483cF4e8517, 0x36D549D8450Bdf67B2CFcE5f800D296E9A8B639f
+        mintSlots: 11, 13,7, 88
+      default:
+        chain: goerli
+    body_22:
+      required:
+      - chain
+      - contractAddress
+      type: object
+      properties:
+        contractAddress:
+          type: string
+        chain:
+          type: string
+          enum:
+          - goerli
+          - bsc-testnet
+          - fuji
+          - arbitrum-goerli
+          - optimism-goerli
+          - fantom-testnet
+          - ethereum
+          - bsc
+          - avalanche
+          - polygon
+          - arbitrum
+          - optimism
+          - fantom
+      example:
+        contractAddress: 2.916124294435724E47
+      default:
+        chain: goerli
+    body_23:
+      required:
+      - chain
+      - contractAddress
+      - index
+      type: object
+      properties:
+        contractAddress:
+          type: string
+        index:
+          type: string
+        chain:
+          type: string
+          enum:
+          - goerli
+          - bsc-testnet
+          - fuji
+          - arbitrum-goerli
+          - optimism-goerli
+          - fantom-testnet
+          - ethereum
+          - bsc
+          - avalanche
+          - polygon
+          - arbitrum
+          - optimism
+          - fantom
+      example:
+        contractAddress: 2.916124294435724E47
+      default:
+        chain: goerli
+    body_24:
+      required:
+      - allowListAddress
+      - chain
+      - contractAddress
+      type: object
+      properties:
+        contractAddress:
+          type: string
+        allowListAddress:
+          type: string
+        chain:
+          type: string
+          enum:
+          - goerli
+          - bsc-testnet
+          - fuji
+          - arbitrum-goerli
+          - optimism-goerli
+          - fantom-testnet
+          - ethereum
+          - bsc
+          - avalanche
+          - polygon
+          - arbitrum
+          - optimism
+          - fantom
+      example:
+        contractAddress: 2.916124294435724E47
+      default:
+        chain: goerli
+    body_25:
+      required:
+      - chain
+      - contractAddress
+      - payeeAddress
+      type: object
+      properties:
+        contractAddress:
+          type: string
+        payeeAddress:
+          type: string
+        chain:
+          type: string
+          enum:
+          - goerli
+          - bsc-testnet
+          - fuji
+          - arbitrum-goerli
+          - optimism-goerli
+          - fantom-testnet
+          - ethereum
+          - bsc
+          - avalanche
+          - polygon
+          - arbitrum
+          - optimism
+          - fantom
+      example:
+        contractAddress: 2.916124294435724E47
+      default:
+        chain: goerli
+    NFTData_inner:
+      type: object
+      properties:
+        contractAddress:
+          type: string
+        tokenID:
+          type: string
+        tokenName:
+          type: string
+    Transaction_inner:
+      type: object
+      properties:
+        blockNumber:
+          type: string
+        timeStamp:
+          type: string
+        hash:
+          type: string
+        nonce:
+          type: string
+        blockHash:
+          type: string
+        from:
+          type: string
+        contractAddress:
+          type: string
+        to:
+          type: string
+        tokenID:
+          type: string
+        tokenName:
+          type: string
+        tokenSymbol:
+          type: string
+        tokenDecimal:
+          type: string
+        transactionIndex:
+          type: string
+        gas:
+          type: string
+        gasPrice:
+          type: string
+        gasUsed:
+          type: string
+        cumulativeGasUsed:
+          type: string
+        input:
+          type: string
+        confirmations:
+          type: string
+    collectionData_floorSale:
+      type: object
+      properties:
+        "1day":
+          type: number
+        "7day":
+          type: number
+        "30day":
+          type: number
+    collectionData_rank:
+      type: object
+      properties:
+        "1day":
+          type: integer
+        "7day":
+          type: integer
+        "30day":
+          type: integer
+        allTime:
+          type: integer
+    collectionData_royalties:
+      type: object
+      properties:
+        bps:
+          type: number
+        recipient:
+          type: string
+    collectionData_volume:
+      type: object
+      properties:
+        "1day":
+          type: number
+        "7day":
+          type: number
+        "30day":
+          type: number
+        allTime:
+          type: number
+    inline_response_200_8_transfers:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/transferEvent'
+        page:
+          type: number
+          example: 1
+        limit:
+          type: integer
+          example: 50
+        totalPages:
+          type: integer
+          example: 1
+        totalResults:
+          type: integer
+          example: 31
+      example:
+        totalResults: 31
+        limit: 50
+        totalPages: 1
+        page: 1
+        results:
+        - ""
+        - ""
+    inline_response_200_9_transfers:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/transferEvent'
+        page:
+          type: integer
+          example: 1
+        limit:
+          type: integer
+          example: 50
+        totalPages:
+          type: integer
+          example: 1
+        totalResults:
+          type: integer
+          example: 31
+      example:
+        totalResults: 31
+        limit: 50
+        totalPages: 1
+        page: 1
+        results:
+        - ""
+        - ""
+    inline_response_200_10_transfers:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/ownershipData'
+        page:
+          type: integer
+          example: 1
+        limit:
+          type: integer
+          example: 50
+        totalPages:
+          type: integer
+          example: 1
+        totalResults:
+          type: integer
+          example: 31
+      example:
+        totalResults: 31
+        limit: 50
+        totalPages: 1
+        page: 1
+        results:
+        - ""
+        - ""
+    inline_response_200_11_collections:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/collectionData'
+        page:
+          type: integer
+          example: 1
+        limit:
+          type: integer
+          example: 50
+        totalPages:
+          type: integer
+          example: 1
+        totalResults:
+          type: integer
+          example: 31
+      example:
+        totalResults: 31
+        limit: 50
+        totalPages: 1
+        page: 1
+        results:
+        - ""
+        - ""
+    inline_response_200_12_attributes:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/nftAttributes'
+        page:
+          type: integer
+          example: 1
+        limit:
+          type: integer
+          example: 500
+        totalPages:
+          type: integer
+          example: 1
+        totalResults:
+          type: integer
+          example: 168
+      example:
+        totalResults: 168
+        limit: 500
+        totalPages: 1
+        page: 1
+        results:
+        - ""
+        - ""
+    inline_response_200_13_attributes:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/nftAttributesWithTokens'
+        page:
+          type: integer
+          example: 1
+        limit:
+          type: integer
+          example: 500
+        totalPages:
+          type: integer
+          example: 1
+        totalResults:
+          type: integer
+          example: 168
+      example:
+        totalResults: 168
+        limit: 500
+        totalPages: 1
+        page: 1
+        results:
+        - ""
+        - ""
+  responses:
+    DuplicateEmail:
+      description: Email already taken
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 400
+            message: Email already taken
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 401
+            message: Please authenticate
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 403
+            message: Forbidden
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 404
+            message: Not found
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    BearerAPIKey:
+      type: http
+      scheme: bearer
+      bearerFormat: APIKey
+    APIKey:
+      type: apiKey
+      name: X-API-Key
+      in: header
